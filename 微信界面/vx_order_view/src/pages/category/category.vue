@@ -154,7 +154,7 @@ import { onLoad } from '@dcloudio/uni-app';
 	.u-tab-item-active::before {
 		content: "";
 		position: absolute;
-		border-left: 4px solid #F3AF28;
+		border-left: 4px solid #55bcf3;
 		height: 32rpx;
 		left: 0;
 		top: 39rpx;

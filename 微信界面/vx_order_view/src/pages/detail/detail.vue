@@ -61,7 +61,7 @@
 				<view class="text u-line-1">首页</view>
 			</view>
 			<view class="item" @click="toCollect">
-				<u-icon v-if="hasCollect == '1'" color="#F3AF28" :size="40"  name="star"></u-icon>
+				<u-icon v-if="hasCollect == '1'" color="#55bcf3" :size="40"  name="star"></u-icon>
 				<u-icon v-if="hasCollect == '0'"  :size="40"  name="star"></u-icon>
 				<view class="text u-line-1">收藏</view>
 			</view>
@@ -305,7 +305,7 @@
 	}
 
 	.price {
-		color: #F3AF28;
+		color: #55bcf3;
 		padding: 20rpx;
 		font-weight: bold;
 	}
@@ -342,7 +342,7 @@
 			margin: 0px 10px;
 			border-radius: 5px;
 			border: 1px solid #E2E2E2;
-			background-color: #F3AF28;
+			background-color: #55bcf3;
 			color: #FFF;
 		}
 	}
@@ -431,7 +431,7 @@
 			}
 
 			.buy {
-				background-color: #F3AF28;
+				background-color: #55bcf3;
 			}
 		}
 	}

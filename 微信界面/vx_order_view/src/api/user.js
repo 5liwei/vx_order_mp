@@ -1,4 +1,5 @@
 import http from '../common/http.js'
+import { addressStore } from '../store/address.js'
 import { userStore } from '../store/user.js'
 //获取code
 export const getCode = () => {
@@ -37,6 +38,7 @@ export const wxLoginApi = (code) => {
 //封装登录
 export const userLogin = async () => {
 	const store = userStore()
+	const astore = addressStore()
 	//获取code
 	let res = await getCode()
 	//登录: 调用我们自己的后端接口
@@ -60,6 +62,7 @@ export const userLogin = async () => {
 	}
 	if(result.data && result.data.nickName){
 		store.nickName = result.data.nickName
+		astore.userName = result.data.nickName
 		uni.setStorageSync('nickName', result.data.nickName)
 	}
 }

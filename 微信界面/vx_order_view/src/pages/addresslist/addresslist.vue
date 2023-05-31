@@ -5,14 +5,14 @@
 				<radio :value="JSON.stringify(res)" :checked="res.addressId == store.checkedId"  />
 				<view style="flex-grow: 1;">
 					<view class="top">
-						<view class="name">{{ res.userName }}</view>
-						<view class="phone">{{ res.phone }}</view>
+						<view class="name">姓名：{{ res.userName }}</view>
+						<view class="phone">电话号码：{{ res.phone }}</view>
 						<view class="tag">
-							<text v-if="res.status == '1'" style="background-color: #F3AF28;">默认</text>
+							<text v-if="res.status == '1'" style="background-color: #55bcf3;">默认</text>
 						</view>
 					</view>
 					<view class="bottom">
-						{{res.area}},{{res.address}}
+						修改
 						<u-icon @click="update(res)" name="edit-pen" :size="40" color="#999999"></u-icon>
 					</view>
 				</view>
@@ -20,7 +20,7 @@
 		</radio-group>
 		<view class="addSite" @tap="toAddSite">
 			<view class="add">
-				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建收货地址
+				<u-icon name="plus" color="#ffffff" class="icon" :size="30"></u-icon>新建个人信息
 			</view>
 		</view>
 	</view>
@@ -51,7 +51,6 @@
 		let res = await addressListApi({
 			openid: uni.getStorageSync('openid')
 		})
-		console.log(res)
 		if (res && res.code == 200) {
 			siteList.list = res.data
 		}
@@ -96,7 +95,7 @@
 		.top {
 			display: flex;
 			font-weight: bold;
-			font-size: 34rpx;
+			font-size: 30rpx;
 
 			.phone {
 				margin-left: 60rpx;
@@ -143,7 +142,7 @@
 		position: absolute;
 		bottom: 30rpx;
 		left: 80rpx;
-		background-color: #F3AF28;
+		background-color: #55bcf3;
 		border-radius: 60rpx;
 		font-size: 30rpx;
 

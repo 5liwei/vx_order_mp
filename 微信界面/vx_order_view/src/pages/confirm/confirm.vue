@@ -1,16 +1,20 @@
 <template>
 	<view class="address" @click="toAddress">
 		<view>
-			<view class="info">
-				<view class="name">
-					{{astore.userName}}
-				</view>
-				<view class="phone">
-					{{astore.phone}}
+			<view v-if="astore.userName != ''">
+				<view class="info">
+					<view class="name">
+						{{astore.userName}}
+					</view>
+					<view class="phone">
+						{{astore.phone}}
+					</view>
 				</view>
 			</view>
-			<view>
-				{{astore.area}}{{astore.address}}
+			<view v-else>
+				<view class="info">
+					请完善个人信息
+				</view>
 			</view>
 		</view>
 		<u-icon name="arrow-right" color="#c8c9cc"></u-icon>
@@ -35,7 +39,7 @@
 	<view class="end">
 		<view class="end-left">
 			<view>
-				总计：<text style="color: #F3AF28;font-weight: bold;">￥{{totalPrice}}</text>
+				总计：<text style="color: #55bcf3;font-weight: bold;">￥{{totalPrice}}</text>
 			</view>
 		</view>
 		<view @click="commitBtn" class="end-right">
@@ -75,48 +79,6 @@
 	const goods = computed(() => {
 		return store.orderList
 	})
-	// const goods = reactive([{
-	// 		flag: true,
-	// 		goodsName: "女款-M",
-	// 		goodsUnit: '/份',
-	// 		goodsId: 1,
-	// 		num: 1,
-	// 		specsName: '中',
-	// 		price: 149,
-	// 		goodsImage: "http://192.168.31.70:8089/images/a35e4257-9e9a-43f8-b077-a7664064ce12.png",
-	// 	},
-	// 	{
-	// 		flag: true,
-	// 		goodsName: "女款-M",
-	// 		goodsUnit: '/份',
-	// 		goodsId: 1,
-	// 		specsName: '中',
-	// 		num: 1,
-	// 		price: 149,
-	// 		goodsImage: "http://192.168.31.70:8089/images/a35e4257-9e9a-43f8-b077-a7664064ce12.png",
-	// 	},
-	// 	{
-	// 		flag: true,
-	// 		goodsName: "女款-M",
-	// 		goodsUnit: '/份',
-	// 		goodsId: 1,
-	// 		num: 1,
-	// 		specsName: '中',
-	// 		price: 149,
-	// 		goodsImage: "http://192.168.31.70:8089/images/a35e4257-9e9a-43f8-b077-a7664064ce12.png",
-	// 	},
-	// 	{
-	// 		flag: true,
-	// 		goodsName: "女款-M",
-	// 		goodsId: 1,
-	// 		num: 1,
-	// 		goodsUnit: '/份',
-	// 		specsName: '中',
-	// 		price: 149,
-	// 		goodsImage: "http://192.168.31.70:8089/images/a35e4257-9e9a-43f8-b077-a7664064ce12.png",
-	// 	}
-	// ])
-
 	//总数
 	const totalNum = computed(() => {
 		let totalNum = 0;
@@ -139,40 +101,43 @@
 			url: '../addresslist/addresslist'
 		});
 	}
-	//查询默认地址
+	//查询默认信息
 	const getAddress = async () => {
-		let res = await getAddressApi({
+		let res = await getUserInfoApi({
 			openid: uni.getStorageSync('openid')
 		})
 		console.log(res)
 		if (res && res.code == 200) {
 			astore.checkedId = res.data.addressId
 			astore.userName = res.data.userName
-			astore.phone = res.data.phone
-			astore.area = res.data.area
-			astore.address = res.data.address
 		}
+		console.log("astore==>", astore);
 	}
 	//提交订单
-	const commitBtn = async()=>{
-		let commitParm = reactive({
-			openid:uni.getStorageSync('openid'),
-			userName:astore.userName,
-			phone:astore.phone,
-			address:astore.area + ","+ astore.address,
-			price:totalPrice.value,
-			details:store.orderList
-		})
-		const res = await splaceOrderApi(commitParm)
-		console.log(res)
-		if(res && res.code == 200){
-			//清空购物车
-			store.orderList = []
-			carstore.carList = []
-			uni.navigateBack()
+	const commitBtn = async () => {
+		if (astore.userName == '' || astore.phone == '') {
 			uni.navigateTo({
-			    url: '../order/order'
-			});
+				url: '../addresslist/addresslist'
+			})
+		} else {
+			let commitParm = reactive({
+				openid: uni.getStorageSync('openid'),
+				userName: astore.userName,
+				phone: astore.phone,
+				price: totalPrice.value,
+				details: store.orderList
+			})
+			const res = await splaceOrderApi(commitParm)
+			console.log(res)
+			if (res && res.code == 200) {
+				//清空购物车
+				store.orderList = []
+				carstore.carList = []
+				// uni.navigateBack()
+				uni.navigateTo({
+				    url: '../order/order'
+				});
+			}
 		}
 	}
 	onLoad(() => {
@@ -276,7 +241,7 @@
 		.end-right {
 			width: 30%;
 			line-height: 90rpx;
-			background-color: #F3AF28;
+			background-color: #55bcf3;
 			text-align: center;
 			color: #fff;
 		}

@@ -145,7 +145,7 @@
 		position: absolute;
 		bottom: 30rpx;
 		left: 80rpx;
-		background-color: #F3AF28;
+		background-color: #55bcf3;
 		border-radius: 60rpx;
 		font-size: 30rpx;
 

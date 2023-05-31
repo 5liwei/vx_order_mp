@@ -13,7 +13,7 @@ let color = {
 	infoLight: "#f4f4f5",
 	
 	warning: "#ff9900",
-	warningDark: "#f29100",
+	warningDark: "#55bcf3",
 	warningDisabled: "#fcbd71",
 	warningLight: "#fdf6ec",
 	

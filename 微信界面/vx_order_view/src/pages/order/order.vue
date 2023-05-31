@@ -2,7 +2,7 @@
 	<view>
 		<view class="wrap">
 			<view class="u-tabs-box">
-				<u-tabs-swiper activeColor="#f29100" ref="tabs" :list="list" :current="currents" @change="change"
+				<u-tabs-swiper activeColor="#55bcf3" ref="tabs" :list="list" :current="currents" @change="change"
 					:is-scroll="false" swiperWidth="750"></u-tabs-swiper>
 			</view>
 			<swiper class="swiper-box" :current="swiperCurrent" @transition="transition"
@@ -19,9 +19,7 @@
 									</view>
 									<view style="margin-left: 6px;;" class="right">{{ res.phone }}</view>
 								</view>
-								<view class="">
-									{{res.address}}
-								</view>
+	
 								<view class="item" v-for="(item, index) in res.goodsList" :key="index">
 									<view class="left">
 										<image :src="item.goodsImage.split(',')[0]" mode="aspectFill"></image>
@@ -29,12 +27,10 @@
 									<view class="content">
 										<view class="title u-line-2">{{ item.goodsName }}</view>
 										<view class="type">{{ item.specsName }}{{item.goodsUnit}}</view>
-										<!-- <view class="delivery-time">发货时间 {{ item.deliveryTime }}</view> -->
 									</view>
 									<view class="right">
 										<view class="price">
 											￥{{ item.price }}
-											<!-- <text class="decimal">.{{ priceDecimal(item.price) }}</text> -->
 										</view>
 										<view class="number">x{{ item.num }}</view>
 									</view>
@@ -48,7 +44,7 @@
 								</view>
 								<view class="bottom">
 									<view @click="cancel(res,index)" v-if="res.status == '0'" class="exchange btn">取消订单</view>
-									<view @click="confirmOrderBtn(res,index)" v-if="res.status == '1'" class="evaluate btn">确定收货</view>
+									<view @click="confirmOrderBtn(res,index)" v-if="res.status == '1'" class="evaluate btn">已完成</view>
 									<view @click="commentBtn(res)" v-if="res.status == '2'" class="evaluate btn">评价</view>
 								</view>
 							</view>
@@ -58,7 +54,7 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<u-modal confirm-color="#F3AF28" :content-style="{padding: '10px'}"  :show-cancel-button='true' title="评论" :zoom="false" v-model="show" @confirm='confirmBtn' @cancel="cancelBtn">
+		<u-modal confirm-color="#55bcf3" :content-style="{padding: '10px'}"  :show-cancel-button='true' title="评论" :zoom="false" v-model="show" @confirm='confirmBtn' @cancel="cancelBtn">
 		    <view style="height: 100px;">
 		        <textarea v-model="commentText" placeholder="请输入评论" auto-height />
 		    </view>
@@ -96,13 +92,13 @@
 			name: '全部'
 		},
 		{
-			name: '待发货'
+			name: '待出餐'
 		},
 		{
-			name: '已发货'
+			name: '已出餐'
 		},
 		{
-			name: '已收货'
+			name: '已完成'
 		}
 	])
 	const currents = ref(0)

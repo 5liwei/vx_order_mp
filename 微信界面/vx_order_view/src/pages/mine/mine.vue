@@ -19,7 +19,7 @@
 			<u-cell-group>
 				<u-cell-item @click="toOrder" icon="star" title="我的订单"></u-cell-item>
 				<u-cell-item @click="toCollect" icon="photo" title="我的收藏"></u-cell-item>
-				<u-cell-item @click="toAddress" icon="coupon" title="我的地址"></u-cell-item>
+				<u-cell-item @click="toAddress" icon="coupon" title="我的信息"></u-cell-item>
 			</u-cell-group>
 		</view>
 	</view>
@@ -52,7 +52,6 @@
 		}
 	})
 	//头像
-	// const avatarUrl = ref('/static/user.jpg')
 	const avatarUrl = computed(()=>{
 		if(ustore.avatarUrl){
 			return http.baseUrl + ustore.avatarUrl

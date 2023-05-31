@@ -9,14 +9,6 @@ export const addressStore = defineStore('addressStore', {
 		return {
 			checkedId: '',
 			userName:'',
-			phone:'',
-			area:'',
-			address:''
 		};
-	},
-	// 也可以这样定义
-	// state: () => ({ count: 0 })
-	actions: {
-		
-	},
+	}
 });

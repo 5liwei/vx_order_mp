@@ -267,7 +267,7 @@
 		.end-right {
 			width: 30%;
 			line-height: 90rpx;
-			background-color: #F3AF28;
+			background-color: #55bcf3;
 			text-align: center;
 			color: #fff;
 		}

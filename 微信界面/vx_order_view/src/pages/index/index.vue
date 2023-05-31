@@ -7,7 +7,7 @@
 			<image class="imgs" :src='item.images'></image>
 		</swiper-item>
 	</swiper>
-	<u-divider margin-top='20' margin-bottom='20' color="#F3AF28">店长推荐</u-divider>
+	<u-divider margin-top='20' margin-bottom='20' color="#55bcf3">店长推荐</u-divider>
 	<view class="wrap">
 		<u-waterfall v-model="flowList" ref="uWaterfall">
 			<template v-slot:left="{leftList}">

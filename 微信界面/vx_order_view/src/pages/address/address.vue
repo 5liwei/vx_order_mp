@@ -2,28 +2,19 @@
 	<view class="wrap">
 		<view class="top">
 			<view class="item">
-				<view class="left">收货人</view>
-				<input type="text" v-model="address.userName" placeholder-class="line" placeholder="请填写收货人姓名" />
+				<view class="left">联系人</view>
+				<input type="text" v-model="address.userName" placeholder-class="line" placeholder="请填写姓名" />
 			</view>
 			<view class="item">
 				<view class="left">手机号码</view>
-				<input type="text" v-model="address.phone" placeholder-class="line" placeholder="请填写收货人手机号" />
-			</view>
-			<view class="item" @confirm='confirm' @tap="showRegionPicker">
-				<view class="left">所在地区:</view>
-				<input disabled style="width: 100%;" v-model="address.area" type="text" :placeholder-class="line"
-					placeholder="省市区县、乡镇等" />
-			</view>
-			<view class="item address">
-				<view class="left">详细地址</view>
-				<textarea type="text" v-model="address.address" placeholder-class="line" placeholder="街道、楼牌等" />
+				<input type="text" v-model="address.phone" placeholder-class="line" placeholder="请填写手机号" />
 			</view>
 		</view>
 		<view class="bottom">
 			<view class="default">
 				<view class="left">
-					<view class="set">设置默认地址</view>
-					<view class="tips">提醒：每次下单会默认推荐该地址</view>
+					<view class="set">设为默认</view>
+					<view class="tips">提醒：每次下单会默认使用该信息</view>
 				</view>
 				<view class="right">
 					<switch :checked="address.status == '1'" color="red" @change="setDefault" />
@@ -68,8 +59,6 @@
 		openid:uni.getStorageSync('openid'),
 		userName:"",
 		phone:'',
-		area:'',
-		address:'',
 		status:'0'
 	})
 	//提交
@@ -87,20 +76,6 @@
 			uni.showToast({
 				icon:'none',
 				title:'请填写电话'
-			})
-			return;
-		}
-		if(!address.area){
-			uni.showToast({
-				icon:'none',
-				title:'请选择区域'
-			})
-			return;
-		}
-		if(!address.address){
-			uni.showToast({
-				icon:'none',
-				title:'请填写详细地址'
 			})
 			return;
 		}

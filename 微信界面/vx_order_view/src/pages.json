@@ -83,13 +83,13 @@
 		//导航全局标题，当页面没有配置的时候生效
 		"navigationBarTitleText": "微信点餐小程序",
 		//导航字体颜色
-		"navigationBarBackgroundColor": "#F3AF28",
+		"navigationBarBackgroundColor": "#55bcf3",
 		//下拉显示出来的窗口的背景色
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
 		"color": "#333333",
-		"selectedColor": "#F3AF28",
+		"selectedColor": "#55bcf3",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [
